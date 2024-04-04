@@ -1,9 +1,10 @@
 let score = JSON.parse(localStorage.getItem("score"));
 const resultElem = document.querySelector(".result-elem");
-const movedElem = document.querySelector(".movedElem");
-const movedElem2 = document.querySelector(".movedElem2");
-
+// const movedElem = document.querySelector(".movedElem");
+// const movedElem2 = document.querySelector(".movedElem2");
+let totalPlay = document.querySelector(".totalPlay");
 const totalPlayElem = document.querySelector(".total-play");
+let imgMoveDiv = document.querySelector(".img-move");
 
 function playGame(clientMove) {
   let computerMove = pickedComputerMove();
@@ -53,14 +54,10 @@ function playGame(clientMove) {
 
   function updateElem() {
     resultElem.innerHTML = result;
-
-    // movedElem.innerHTML = `You picked ${clientMove}, computer picked ${computerMove}`;
-
-    // movedElem2.innerHTML = `Wins: ${score.Wins} Losses: ${score.Losses} Ties: ${score.Ties};
-    // you play ${score.Total} times`;
-
-    totalPlayElem.innerHTML = `You play ${score.Total} times`;
+    showTotalPlay();
   }
+
+  imgMove(computerMove, clientMove);
 }
 
 function ResetScore() {
@@ -74,8 +71,7 @@ function ResetScore() {
   resultElem.innerHTML = "Result";
   totalPlayElem.innerHTML = "You play 0 times";
 
-  // movedElem.innerHTML = "";
-  // movedElem2.innerHTML = "";
+  showTotalPlay();
 }
 
 function pickedComputerMove() {
@@ -92,3 +88,24 @@ function pickedComputerMove() {
 
   return computerMove;
 }
+
+function imgMove(computerMove, clientMove) {
+  const html = `
+  <img src="/assets/img/${clientMove}.svg" alt="paper" class="user-img">
+  <img src="/assets/img/${computerMove}.svg" alt="paper" class="computer-img">`;
+
+  imgMoveDiv.innerHTML = html;
+}
+
+function showTotalPlay() {
+  localStorage.setItem("score", JSON.stringify(score));
+  totalPlayElem.innerHTML = `You play ${score.Total} times`;
+  console.log(score.Total);
+}
+
+function init() {
+  imgMove("Paper", "Rock");
+  showTotalPlay();
+}
+
+init();
