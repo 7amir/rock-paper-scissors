@@ -61,7 +61,10 @@ body {
   cursor: pointer;
   width: 200px;
   height: 40px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
   margin-bottom: 15px;
   border-radius: 8px;
   border: 2px solid #fff;
@@ -77,4 +80,38 @@ body {
 .reset-score {
   color: #394868 !important;
   background: #fff !important;
+}
+
+.icon-img {
+  width: 12%;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.icon-img img {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .img-move .computer-img {
+    top: 52%;
+    width: 48%;
+  }
+
+  .img-move .user-img {
+    top: 27%;
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .img-move .computer-img {
+    top: 51%;
+    width: 68%;
+  }
+
+  .img-move .user-img {
+    top: 28%;
+    width: 68%;
+  }
 }
